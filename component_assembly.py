@@ -16,7 +16,7 @@ from langgraph.graph import StateGraph, START, END
 from IPython.display import Image, display
 
 from distribution_nodes import route_to_analyses, dispatch_analysis
-from review_nodes import static_analysis_node, security_scan_node, style_check_node
+from review_nodes import static_analysis_node, security_scan_node, style_check_node, check_syntax_node
 from sink_nodes import generate_report_node
 from review_state import ReviewState
 
@@ -24,6 +24,7 @@ from review_state import ReviewState
 review_builder = StateGraph(ReviewState)
 
 review_builder.add_node("dispatch",dispatch_analysis)
+review_builder.add_node("check_syntax",check_syntax_node)
 review_builder.add_node("static_analysis",static_analysis_node)
 review_builder.add_node("security_scan",security_scan_node)
 review_builder.add_node("style_check",style_check_node)
@@ -39,6 +40,7 @@ review_builder.add_conditional_edges(
 )
 
 # 三个审查节点完成后 → 报告汇总
+review_builder.add_edge("check_syntax", "generate_report")
 review_builder.add_edge("static_analysis", "generate_report")
 review_builder.add_edge("security_scan", "generate_report")
 review_builder.add_edge("style_check", "generate_report")

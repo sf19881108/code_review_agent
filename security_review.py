@@ -8,7 +8,7 @@ from langchain.tools import tool
 """
 
 SQL_INJECTION_PATTERNS = [
-    r"(?:execute|cursor)\(\s*[\"'].*%(?:s|d|\(",
+    r"(?:execute|cursor)\(\s*[\"'].*%(?:s|d)",
     r"(?:execute|cursor)\(\s*f[\"'].*\{",
     r"\.format\(.*\)",
     r"\+.*\"\s*(?:WHERE|SET|VALUES|INTO)",

@@ -22,6 +22,7 @@ def route_to_analyses(state: ReviewState) -> list[Send]:
     """路由函数：通过 Send 将代码并行派发到三个审查节点"""
     code = state["code"]
     return [
+        Send("check_syntax", {"code": code}),
         Send("static_analysis", {"code": code}),
         Send("security_scan", {"code": code}),
         Send("style_check", {"code": code}),

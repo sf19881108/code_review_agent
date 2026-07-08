@@ -239,3 +239,9 @@ print(result["security_result"])
 MIT License
 
 ## 🤝 贡献
+
+
+##剩余任务
+- [ ] 增加代码语法检查功能
+- [ ] 进一步增加文件类型的处理
+- [ ] 增加skills处理

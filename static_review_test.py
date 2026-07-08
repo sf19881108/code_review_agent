@@ -36,7 +36,7 @@ def static_analysis(code: str) -> str:
 
         tree = ast.parse(code)
     except SyntaxError as e:
-        return f"[静态分析] 代码存在语法错误，无法继续分析：{e}"
+        return f"[静态分析] 分析失败，无法继续分析."
 
     functions = []
     classes = []
